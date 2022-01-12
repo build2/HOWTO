@@ -34,7 +34,7 @@ this method, you must make sure the discarded characters only appear in
 comments. For example:
 
 ```
-iconv -f UTF-8 -t UTF-8 hello.cxx >hello-utf8.cxx
+iconv -c -f UTF-8 -t UTF-8 hello.cxx >hello-utf8.cxx
 diff -u hello.cxx hello-utf8.cxx
 ```
 
