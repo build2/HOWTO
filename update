@@ -1,0 +1,40 @@
+#! /usr/bin/env bash
+
+# Update root README.md with links to HOWTO entries.
+
+owd="$(pwd)"
+trap "{ cd '$owd'; exit 1; }" ERR
+set -o errtrace     # Trap in functions and subshells.
+set -o pipefail     # Fail if any pipeline command fails.
+shopt -s lastpipe   # Execute last pipeline command in the current shell.
+shopt -s nullglob   # Expand no-match globs to nothing rather than themselves.
+
+function info () { echo "$*" 1>&2; }
+function error () { info "$*"; exit 1; }
+
+# Extract the #-heading from the first line of an .md file.
+#
+function heading () # <md-file>
+{
+  local r
+  r=$(sed -rn -e '1s/^#+ *(.+[^ ]) *$/\1/p;q' "$1")
+
+  if [[ -z "$r" ]]; then
+    error "no #-header on first line of $1"
+  fi
+
+  echo "$r"
+}
+
+o=README.md
+
+# Preserve the heading before overwriting the file.
+#
+h=$(heading "$o")
+
+printf "# %s\n\n" "$h" >$o
+
+for f in $(find entries -type f -name '*.md' | sort); do
+  h=$(heading "$f")
+  printf "[%s](%s)\n\n" "$h" "$f" >>$o
+done
