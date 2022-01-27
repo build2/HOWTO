@@ -6,3 +6,5 @@
 
 [How do I handle projects that don't use semantic versioning?](entries/handle-projects-which-dont-use-semver.md)
 
+[How do I handle tests that have extra dependencies?](entries/handle-tests-with-extra-dependencies.md)
+
