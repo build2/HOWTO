@@ -8,3 +8,5 @@
 
 [How do I handle tests that have extra dependencies?](entries/handle-tests-with-extra-dependencies.md)
 
+[How should I name packages when packaging third-party projects?](entries/name-packages-in-project.md)
+
