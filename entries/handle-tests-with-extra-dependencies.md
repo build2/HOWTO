@@ -46,7 +46,7 @@ This value is what tells the `build2` package manager that tests for
 
 For `libhello-tests` we used the standard executable project type (`-t exe`
 above) but for tests we don't need everything. In particular, we can remove
-the `install` module from `libhello-tests/build/bootstrap.root`. If your old
+the `install` module from `libhello-tests/build/bootstrap.build`. If your old
 tests in `libhello` were in a subproject (as is customary), then you can
 replace the rest in `libhello-tests` with that. You will also most likely want
 to tweak `libhello-tests/manifest` (summary, license, etc).  Note that
