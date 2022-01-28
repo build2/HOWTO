@@ -1,7 +1,7 @@
 # How do I handle tests that have extra dependencies?
 
 > I would like to use a testing framework in the tests of my library. But the
-> testing framework is not need for the library itself. What is the best way
+> testing framework is not needed for the library itself. What is the best way
 > to arrange this?
 
 If our tests (or examples, benchmarks, etc) depend on another package (such as
