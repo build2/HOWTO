@@ -10,3 +10,5 @@
 
 [How should I name packages when packaging third-party projects?](entries/name-packages-in-project.md)
 
+[How do I setup the `build2` toolchain for development?](entries/setup-build2-for-development.md)
+
