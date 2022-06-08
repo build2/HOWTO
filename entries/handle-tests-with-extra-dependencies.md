@@ -48,9 +48,15 @@ For `libhello-tests` we used the standard executable project type (`-t exe`
 above) but for tests we don't need everything. In particular, we can remove
 the `install` module from `libhello-tests/build/bootstrap.build`. If your old
 tests in `libhello` were in a subproject (as is customary), then you can
-replace the rest in `libhello-tests` with that. You will also most likely want
-to tweak `libhello-tests/manifest` (summary, license, etc).  Note that
-normally the two packages use the same version with
+replace the rest in `libhello-tests` with that. While most of your tests will
+now live in a separate package, it's a good idea to keep at least a "smoke
+test" (that makes sure the library can be linked and its basic functionality
+works) in the library itself. This will allow the users of your library to do
+a basic "sanity test" without getting your "real" tests (and all their
+dependencies).
+
+You will also most likely want to tweak `libhello-tests/manifest` (summary,
+license, etc). Note that normally the two packages use the same version with
 [`bdep-release`][bdep-release] taking care of both automatically (see
 [Developing Multiple Packages and Projects][guide-dev-multi] for details).
 
