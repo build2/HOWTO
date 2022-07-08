@@ -311,7 +311,7 @@ exe{hello}:
 {
   # Metadata (see also --build2-metadata in main.cxx).
   #
-  export.metadata = 1 libhello
+  export.metadata = 1 hello
 
   hello.fancy = [bool] $config.hello.fancy
 }
