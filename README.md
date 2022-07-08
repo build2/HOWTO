@@ -2,6 +2,8 @@
 
 [How do I convert source files to be in the UTF-8 encoding?](entries/convert-source-files-to-utf8.md)
 
+[How do I convey additional information (metadata) with executables and C/C++ libraries?](entries/convey-additional-information-with-exe-lib.md)
+
 [How do I disable building of a shared library variant for a platform/compiler?](entries/disable-shared-library-for-platform.md)
 
 [How do I handle auto-generated C/C++ headers?](entries/handle-auto-generated-headers.md)

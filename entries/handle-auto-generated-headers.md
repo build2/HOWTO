@@ -453,7 +453,7 @@ are expensive to generate:
 exe{hello}: cxx{main}
 exe{hello}: {hxx cxx}{codepage-utf8  \
                       codepage-utf16 \
-		      codepage-utf32}: update = execute
+                      codepage-utf32}: update = execute
 ```
 
 Here the `update=execute` prerequisite-specific variable instructs the link
