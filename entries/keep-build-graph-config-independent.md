@@ -23,8 +23,10 @@ configuration-independent view of the project. For example, an IDE could use
 source file still belongs to the project even if it's excluded from the build
 on the current platform.
 
-While a configuration-independent build graph is a useful property, it's not
-without costs. After having written something like this a few times:
+While a configuration-independent build graph is a useful property, it does
+have some mental overhead. After having written something like this a few
+times:
+
 
 ```
 if ($cxx.target.class != 'windows')
