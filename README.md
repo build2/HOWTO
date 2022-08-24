@@ -20,3 +20,5 @@
 
 [How do I setup the `build2` toolchain for development?](entries/setup-build2-for-development.md)
 
+[How do I correctly use C/C++ `assert()` in tests?](entries/use-assert-in-tests.md)
+
