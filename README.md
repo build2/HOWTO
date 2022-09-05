@@ -1,5 +1,7 @@
 # `build2` HOWTO
 
+[Which C/C++ compile/link options are OK specify in a project's `buildfile`?](entries/compile-options-in-buildfile.md)
+
 [How do I convert source files to be in the UTF-8 encoding?](entries/convert-source-files-to-utf8.md)
 
 [How do I convey additional information (metadata) with executables and C/C++ libraries?](entries/convey-additional-information-with-exe-lib.md)
