@@ -1,4 +1,4 @@
-# Which C/C++ compile/link options are OK specify in a project's `buildfile`?
+# Which C/C++ compile/link options are OK to specify in a project's `buildfile`?
 
 > I am trying to package a third-party project and I see that they specify
 > all sorts of C/C++ compile and link options in their build definition
@@ -53,7 +53,7 @@ violate).
 
 * Turn warnings into errors (`-Werror`, `/WX`) [#1]
 
-* Disable assertion checking (`-DNDEBU`) [#1]
+* Disable assertion checking (`-DNDEBUG`) [#1]
 
 * Extra protection/verification (`-fstack-protector-all`, `-fsanitize*`, `-D_GLIBCXX_ASSERTIONS`) [#1]
 
