@@ -1,6 +1,6 @@
 # `build2` HOWTO
 
-[Which C/C++ compile/link options are OK specify in a project's `buildfile`?](entries/compile-options-in-buildfile.md)
+[Which C/C++ compile/link options are OK to specify in a project's `buildfile`?](entries/compile-options-in-buildfile.md)
 
 [How do I convert source files to be in the UTF-8 encoding?](entries/convert-source-files-to-utf8.md)
 
@@ -17,6 +17,8 @@
 [How do I keep the build graph configuration-independent?](entries/keep-build-graph-config-independent.md)
 
 [How do I link the `pthread` library?](entries/link-pthread.md)
+
+[How do I make a C/C++ library that provides `main()`?](entries/make-library-that-provides-main.md)
 
 [How should I name packages when packaging third-party projects?](entries/name-packages-in-project.md)
 
