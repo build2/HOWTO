@@ -17,7 +17,7 @@ the static library approach.
 To illustrate the setup, let's develop a basic C++ testing framework called
 `libmytest`. You can find the complete source code in the [`libmytest`
 repository][libmytest] (see the commit history for the before/after `main()`
-support).
+changes).
 
 We start the project like this:
 
@@ -26,7 +26,7 @@ $ bdep new -t lib,no-version libmytest
 $ cd libmytest
 ```
 
-This gives us the standard `buildfile` in `libmytest/` that starts like this
+This gives us the standard `buildfile` in `libmytest/` that begins like this
 (we've removed the library importation variables since our testing framework
 won't have any dependencies):
 
@@ -48,9 +48,9 @@ liba{mytest}: cxx.export.poptions += -DLIBMYTEST_STATIC
 libs{mytest}: cxx.export.poptions += -DLIBMYTEST_SHARED
 ```
 
-We can now define and implement our testing framework API (see
-[`mytest.hxx`][mytest.hxx] for an example) and make sure it works with
-a user-provided `main()` (see [`tests/basics/`][basics]).
+Next we implement our testing framework API (see [`mytest.hxx`][mytest.hxx]
+for an example) and make sure it works with a user-provided `main()` (see
+[`tests/basics/`][basics]).
 
 Once this is done, our next step is to provide `main()` as part of the
 library. Specifically, we want to provide a separate library target, say,
@@ -93,20 +93,20 @@ To:
 import libs = libmytest%liba{mytest-main}
 ```
 
-Then get rid of our own `main()` in `tests/basics/driver.cxx` and things seem
-to work.
+Finally we get rid of our own `main()` in `tests/basics/driver.cxx`, try to
+build and run the test, and it seems to work.
 
 But if we look closer, we will notice an undesirable trait of this
 straightforward approach: because we link `lib{mytest}` via
 `liba{mytest-main}`, we always end up with static `liba{mytest}`. This is due
-to `build2` linking static libraries to static and shared libraries \- to
-shared (which is a sensible default semantics). Ideally, what we would want is
-for the static/shared version of `lib{mytest}` to be picked as before, based
-on the project's executable linking preferences while always linking the
-static `liba{mytest-main}`.
+to `build2`'s library linking semantics: it links static libraries to static
+and shared libraries \- to shared, which is a sensible default. Ideally, what
+we would like is for the static/shared version of `lib{mytest}` to be picked
+as before, based on the project's executable linking preferences while always
+linking static `liba{mytest-main}`.
 
-While this semantics can be achieved, the setup is quite a bit more elaborate.
-Here are all the relevant changes to `libmytest/buildfile`:
+While this behavior can be achieved, the setup is a bit more elaborate. Here
+are all the relevant changes to `libmytest/buildfile`:
 
 ```
 src = cxx{* -main}
@@ -152,8 +152,8 @@ libs{mytest-main}: cxx.export.libs = liba{mytest-main-shared} lib{mytest}
 ```
 
 The trick here is to use binless `liba{mytest-main}` and `libs{mytest-main}`
-as selectors for the correct `lib{mytest}` variant.  However, there are a few
-nuances so let's examine the key fragments:
+as selectors for the correct `lib{mytest}` variant. However, there are a few
+other nuances so let's examine the key parts in more detail:
 
 ```
 ./: lib{mytest-main}
