@@ -3,6 +3,8 @@
 > I am dealing with a C++ testing framework library that optionally must
 > provide an implementation of `main()`. How do I arrange for this?
 
+Note: the following functionality is available in `build2` 0.16.0 and later.
+
 It's common for C/C++ testing frameworks to include an additional library that
 provides the default implementation of `main()`. However, `main()` is a
 special function and providing its implementation in a library often requires
@@ -50,7 +52,7 @@ libs{mytest}: cxx.export.poptions += -DLIBMYTEST_SHARED
 
 Next we implement our testing framework API (see [`mytest.hxx`][mytest.hxx]
 for an example) and make sure it works with a user-provided `main()` (see
-[`tests/basics/`][basics]).
+[`tests/basics/`][basics-pre]).
 
 Once this is done, our next step is to provide `main()` as part of the
 library. Specifically, we want to provide a separate library target, say,
@@ -101,8 +103,8 @@ straightforward approach: because we link `lib{mytest}` via
 `liba{mytest-main}`, we always end up with static `liba{mytest}`. This is due
 to `build2`'s library linking semantics: it links static libraries to static
 and shared libraries \- to shared, which is a sensible default. Ideally, what
-we would like is for the static/shared version of `lib{mytest}` to be picked
-as before, based on the project's executable linking preferences while always
+we would like is for the static/shared variant of `lib{mytest}` to be picked
+as before, based on the project's executable linking preferences, while always
 linking static `liba{mytest-main}`.
 
 While this behavior can be achieved, the setup is a bit more elaborate. Here
@@ -175,10 +177,10 @@ obja{main-static}: cxx{main} liba{mytest}
 obja{main-shared}: cxx{main} libs{mytest}
 ```
 
-The `liba{mytest-main-static}` and `libs{mytest-main-shared}` static libraries
+The `liba{mytest-main-static}` and `liba{mytest-main-shared}` static libraries
 are built from the same `main.cxx` but depend on `liba{mytest}` or
 `libs{mytest}`, respectively. In particular, this means that when `main.cxx`
-is compiled for `libs{mytest-main-shared}`, it will "see" symbols from
+is compiled for `liba{mytest-main-shared}`, it will "see" symbols from
 `lib{mytest}` as DLL-exported, while when compiled for
 `liba{mytest-main-shared}` \- as ordinary. This is the reason for having two
 static libraries that provide `main()`.
@@ -233,4 +235,4 @@ b -v tests/basics/exe{driver} config.bin.exe.lib=static
 [libmytest]: https://github.com/build2-packaging/libmytest
 [mytest.hxx]: https://github.com/build2-packaging/libmytest/blob/master/libmytest/mytest.hxx
 [main.cxx]: https://github.com/build2-packaging/libmytest/blob/master/libmytest/main.cxx
-[basics]: https://github.com/build2-packaging/libmytest/tree/master/tests/basics
+[basics-pre]: https://github.com/build2-packaging/libmytest/tree/ff09768f3301f9e5c4ebe72c9004fa137693102b/tests/basics
