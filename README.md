@@ -12,6 +12,8 @@
 
 [How do I handle projects that don't use semantic versioning?](entries/handle-projects-which-dont-use-semver.md)
 
+[How do I handle projects that don't use versions at all?](entries/handle-projects-which-dont-use-version.md)
+
 [How do I handle tests that have extra dependencies?](entries/handle-tests-with-extra-dependencies.md)
 
 [How do I keep the build graph configuration-independent?](entries/keep-build-graph-config-independent.md)
