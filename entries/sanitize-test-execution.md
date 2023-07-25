@@ -10,7 +10,7 @@ The easiest way to sanitize test execution is using [Testscript][testscript]
 each test gets its own temporary working directory and there are mechanisms
 for redirecting output streams, cleaning up temporary files, etc.
 
-While normally each `testscript` file contains multiple tests for a single
+While usually each `testscript` file contains multiple tests for a single
 executable, it's also possible to use the same `testscript` file to performs a
 single test on multiple executables. For this we simply list the same
 `testscript` as a prerequisite for multiple tests. For example, our
