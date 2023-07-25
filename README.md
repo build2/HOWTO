@@ -24,6 +24,8 @@
 
 [How should I name packages when packaging third-party projects?](entries/name-packages-in-project.md)
 
+[How do I sanitize the execution of my tests?](entries/sanitize-test-execution.md)
+
 [How do I setup the `build2` toolchain for development?](entries/setup-build2-for-development.md)
 
 [How do I correctly use C/C++ `assert()` in tests?](entries/use-assert-in-tests.md)
