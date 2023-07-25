@@ -48,7 +48,7 @@ present in the current working directory, then we can symlink it from the
 source directory before running the test executable:
 
 ```
-ln $src_base/test.config ./ ;
+ln -s $src_base/test.config ./ ;
 $*
 ```
 
@@ -57,7 +57,7 @@ we disable the automatic symlink cleanup because it will be taken care
 of by the recursive wildcard cleanup `&***`):
 
 ```
-ln --no-cleanup $src_base/test.config ./ ;
+ln --no-cleanup -s $src_base/test.config ./ ;
 $* 1>&2 2>| &***
 ```
 
