@@ -1,5 +1,7 @@
 # `build2` HOWTO
 
+[How do I add action targets similar to `PHONY` targets in `make`?](entries/add-action-targets.md)
+
 [Which C/C++ compile/link options are OK to specify in a project's `buildfile`?](entries/compile-options-in-buildfile.md)
 
 [How do I convert source files to be in the UTF-8 encoding?](entries/convert-source-files-to-utf8.md)
