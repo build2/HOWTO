@@ -74,6 +74,10 @@ will be pulled in automatically):
 $ bdep ci -d libhello
 ```
 
+See also:
+
+[How to handle varying custom build configurations for libraries and their tests?](https://github.com/build2/build2/issues/297)
+
 [bdep-new]:         https://build2.org/bdep/doc/bdep-new.xhtml
 [bdep-release]:     https://build2.org/bdep/doc/bdep-release.xhtml
 [bdep-ci]:          https://build2.org/bdep/doc/bdep-ci.xhtml
