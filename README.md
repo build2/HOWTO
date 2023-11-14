@@ -22,6 +22,8 @@
 
 [How do I link the `pthread` library?](entries/link-pthread.md)
 
+[How do I link a system library like `-lm`, `-ldl`, or `advapi32.lib`?](entries/link-system-library.md)
+
 [How do I make a header-only C/C++ library?](entries/make-header-only-library.md)
 
 [How do I make a C/C++ library that provides `main()`?](entries/make-library-that-provides-main.md)
