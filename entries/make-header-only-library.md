@@ -37,8 +37,11 @@ background). For example, this is the correct setup:
 ```
 lib{hello}: hxx{hello}
 
-cxx.libs = -lm
-lib{hello}: cxx.export.libs = -lm
+if ($cxx.target.class != 'windows')
+{
+  cxx.libs += -lm
+  lib{hello}: cxx.export.libs = -lm
+}
 ```
 
 ## Metadata libraries
