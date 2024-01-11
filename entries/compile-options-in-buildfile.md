@@ -20,7 +20,8 @@ could:
    on this project.
 
 3. Interfere with the functioning of the build system, such us overriding
-   output directories, parallelism, etc.
+   output directories, parallelism, system header/library search
+   directories, etc.
 
 In other words, the options that you may specify in a `buildfile` should only
 have local effect. Here are some common categories of such options:
@@ -64,6 +65,9 @@ violate).
 * Adjust parallelism (`/MP`, `-flto-jobs`) [#3]
 
 * Adjust other compiler/linker behavior (`/FS`, `/MANIFEST:NO`) [#1, #3]
+
+* Hardcode system header/library search directories (`-I/usr/local/include`,
+  `-L/opt/homebrew/lib`) [#3]
 
 Note also that some options are passed by default (for example, `/EHsc`) and
 repeating them explicitly is unnecessary. Similarly, you shouldn't explicitly
