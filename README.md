@@ -28,6 +28,8 @@
 
 [How do I make a C/C++ library that provides `main()`?](entries/make-library-that-provides-main.md)
 
+[How do I make components of a library optional?](entries/make-optional-library-components.md)
+
 [How should I name packages when packaging third-party projects?](entries/name-packages-in-project.md)
 
 [How do I sanitize the execution of my tests?](entries/sanitize-test-execution.md)
