@@ -55,7 +55,6 @@ preliminary steps:
    $ git clone --recursive https://git.codesynthesis.com/cli/cli.git
    $ cd cli
    # see README.md for further instructions
-   # use config.cc.coptions="-Wall -Wextra -Werror -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer"
    $ b
    $ sudo ln -s "$(pwd)/cli/cli/cli" /usr/local/bin/cli
    $ which cli
@@ -88,12 +87,10 @@ preliminary steps:
    $ cd ~/work/odb
    $ git clone --recursive https://git.codesynthesis.com/odb/odb.git
    $ cd odb
-   $ bdep init -C ../builds/gcc @gcc cc \
-       config.cxx=g++                   \
-       config.cc.coptions="-Wall -Wextra -Werror -g"
-   $ b
-   $ sudo ln -s "$(pwd)/odb/odb"    /usr/local/bin/odb
-   $ sudo ln -s "$(pwd)/odb/odb.so" /usr/local/bin/odb.so
+   # see README.md for further instructions
+   $ b odb/
+   $ sudo ln -s "$(pwd)/odb/odb/odb"    /usr/local/bin/odb
+   $ sudo ln -s "$(pwd)/odb/odb/odb.so" /usr/local/bin/odb.so
    $ which odb
    $ odb --version
 
