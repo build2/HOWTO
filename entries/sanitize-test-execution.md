@@ -3,12 +3,14 @@
 > I am converting a third-party project and its tests don't behave well. They
 > write diagnostics to `stdout` instead of `stderr` as well as create
 > temporary files in the current working directory and without cleaning after
-> themselves. How can I sanitize the execution of such tests?
+> themselves. Some of them also don't terminate in a reasonable time. How can
+> I sanitize the execution of such tests?
 
 The easiest way to sanitize test execution is using [Testscript][testscript]
 (an alternative would be an [ad hoc recipe][adhoc-recipe]). With Testscript
 each test gets its own temporary working directory and there are mechanisms
-for redirecting output streams, cleaning up temporary files, etc.
+for redirecting output streams, cleaning up temporary files, setting execution
+timeouts, etc.
 
 While usually each `testscript` file contains multiple tests for a single
 executable, it's also possible to use the same `testscript` file to performs a
@@ -59,6 +61,16 @@ of by the recursive wildcard cleanup `&***`):
 ```
 ln --no-cleanup -s $src_base/test.config ./ ;
 $* 1>&2 2>| &***
+```
+
+The recommended way of dealing with tests that don't terminate in a reasonable
+time (or at all) is to set an execution timeout that is treated as success
+with the [`env`][env] builtin. For example, this line will execute the test
+for 60 second and, unless it exits naturally, will terminate it but consider
+the execution successful:
+
+```
+env --timeout 60 --timeout-success -- $*
 ```
 
 [testscript]: https://build2.org/build2/doc/build2-testscript-manual.xhtml
