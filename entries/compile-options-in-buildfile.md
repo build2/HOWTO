@@ -14,7 +14,7 @@ could:
 
 1. Prevent the user from controlling the overall characteristics of the
    build, such as debug information, optimization, target architecture,
-   diagnostics, etc.
+   diagnostics, reproducible build, etc.
 
 2. Require changes to compilation/linking of other projects that depend
    on this project.
@@ -68,6 +68,8 @@ violate).
 
 * Hardcode system header/library search directories (`-I/usr/local/include`,
   `-L/opt/homebrew/lib`) [#3]
+
+* Adjust reproducible build characteristics (`-ffile-prefix-map`) [#1]
 
 Note also that some options are passed by default (for example, `/EHsc`) and
 repeating them explicitly is unnecessary. Similarly, you shouldn't explicitly
