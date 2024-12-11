@@ -28,6 +28,10 @@ have local effect. Here are some common categories of such options:
 
 1. Enable/disable warnings (`-Wno-XXX`, `/wdXXX`, `-D_{CRT,SCL}_SECURE_NO_WARNINGS`).
 
+   Note that you should only enable specific warnings rather than
+   warning classes (`-Wall`, `-Wextra`) since the set of warnings they
+   enable may change in the future.
+
 2. Enable/disable language features that only affect individual translation
    units, for example:
 
