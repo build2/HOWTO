@@ -65,6 +65,12 @@ preliminary steps:
 
 3. Install the [ODB][odb] compiler using the staged toolchain.
 
+   NOTE: during development `build2` may use a released or development
+   version of ODB and you will need to build a matching version of the
+   ODB compiler. To determine which version of ODB is currently used,
+   check the [`libbutl/libbutl-odb/odb/version.hxx`](https://git.build2.org/cgit/libbutl/tree/libbutl-odb/odb/version.hxx)
+   header.
+
    If you don't need the development setup of ODB, you can build the compiler
    from a [package][odb] and install it into `/usr/local` or similar. See
    [Package Consumption][guide-consume-pkg] and [Installing ODB with
