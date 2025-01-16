@@ -8,6 +8,8 @@
 
 [How do I convey additional information (metadata) with executables and C/C++ libraries?](entries/convey-additional-information-with-exe-lib.md)
 
+[How do I deal with `target already updated but [not] for install` errors?](entries/deal-with-already-updated-for-install.md)
+
 [How do I disable building of a shared library variant for a platform/compiler?](entries/disable-shared-library-for-platform.md)
 
 [How do I handle auto-generated C/C++ headers?](entries/handle-auto-generated-headers.md)
