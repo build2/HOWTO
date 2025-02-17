@@ -163,8 +163,8 @@ number of symlinks in `/usr/local/bin`. For example:
 
 ```
 $ ls -l /usr/local/bin/
-  b      -> ~/build2/builds/gcc/build2/build2/b
-  b-boot -> ~/build2/build2/build2/b-boot
+  b      -> ~/build2/builds/gcc/build2/b/b
+  b-boot -> ~/build2/build2/b/b-boot
   bdep   -> ~/build2/builds/gcc/bdep/bdep/bdep
   bpkg   -> ~/build2/builds/gcc/bpkg/bpkg/bpkg
 ```
@@ -200,8 +200,8 @@ and `bpkg`). For example, the following commands should get the toolchain back
 into the fully-functional and synchronized state:
 
 ```
-$ BDEP_SYNC=0 b build2/build2/ bpkg/bpkg/ bdep/bdep/
-$             b build2/build2/ bpkg/bpkg/ bdep/bdep/
+$ BDEP_SYNC=0 b build2/b/ bpkg/bpkg/ bdep/bdep/
+$             b build2/b/ bpkg/bpkg/ bdep/bdep/
 ```
 
 If the build system itself is not functional, it can always be rebuilt using
@@ -209,8 +209,8 @@ the bootstrapped build system (`b-boot`; built by this `bootstrap`
 script). For example:
 
 ```
-$ BDEP_SYNC=0 b-boot build2/build2/
-$ BDEP_SYNC=0 b      build2/build2/
+$ BDEP_SYNC=0 b-boot build2/b/
+$ BDEP_SYNC=0 b      build2/b/
 ```
 
 Note that the bootstrap build system can only be used to update the build
