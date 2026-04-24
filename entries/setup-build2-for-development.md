@@ -11,24 +11,24 @@ no `bdep` yet.
 The recommended way to initialize the `build2` development setup is with the
 `bootstrap` script found in the [`etc`][etc] repository. By default, it will
 clone the necessary `git` repositories into the current working directory and
-initialize the default build configurations. Later it can also be used to
+initialize the default build configuration. Later it can also be used to
 initialize additional configurations.
 
 NOTE: The `bootstrap` script has been tested on Linux and should also work on
-other UNIX-like systems (Mac OS, FreeBSD) provided `bash` is available. While
-it should be possible to recreate this setup on Windows, no automated way to
-do this is currently provided.
+other UNIX-like systems (Mac OS, FreeBSD) provided `bash` and GCC (for ODB)
+are available. While it should be possible to recreate this setup on Windows,
+no automated way to do this is currently provided.
 
 Before running `bootstrap`, you will also need to perform the following
 preliminary steps:
 
 1. Install the latest [staged toolchain][stage] somewhere temporary, for
-   example, `/tmp/build2-install`. Hint: use `--local` and `--no-modules` when
-   building the staged toolchain to speed things up seeing that this is a
-   throw-away installation. For example:
+   example, `/tmp/build2-install`. Hint: use `--local` when building the
+   staged toolchain to speed things up seeing that this is a throw-away
+   installation. For example:
 
    ```
-   $ sh build2-install-...-stage.sh --local --no-modules /tmp/build2-install
+   $ sh build2-install-...-stage.sh --local /tmp/build2-install
    ```
 
 2. Install the [CLI][cli] compiler using the staged toolchain.
@@ -136,9 +136,8 @@ this:
 ```
 ~/work/build2/
 │
-├── builds/                 -- build configurations
-│   ├── gcc/                -- default toolchain configuration
-│   └── gcc-libs/           -- default libraries configuration
+├── builds/                  -- build configurations
+│   └── gcc/                 -- default toolchain configuration
 │
 ├── bdep/                    -- project manager source (git repository)
 ├── bpkg/                    -- package manager source (git repository)
@@ -152,7 +151,7 @@ this:
 │   ├── module/              -- module configuration
 │   └── target/              -- target configuration
 │
-└── libbuild2-*/              -- other standard pre-installed build system modules
+└── libbuild2-*/             -- other standard pre-installed build system modules
 ```
 
 See [`libbuild2-hello`][libbuild2-hello] for details on build system modules
@@ -188,15 +187,16 @@ updating another part of the toolchain (for instance, updating `bpkg` can
 trigger an update of `libbpkg` and this could make `bdep`, which also depends
 on `libbpkg`, no longer runnable).
 
-NOTE: to minimize the chance of such breakage, the `bootstrap` script makes a
-separate configuration (`builds/gcc-libs/` in the above listing) the default
-for libraries (`libbutl`, `libpkg`, etc). This allows you to make changes
-to libraries and run their tests without affecting the toolchain.
+NOTE: to minimize the chance of such breakages, the `bootstrap` script can be
+instructed with the `--libs` option to make a separate `builds/gcc-libs/`
+configuration and make it the default for libraries (`libbutl`, `libpkg`,
+etc). This allows you to make changes to libraries and run their tests without
+affecting the toolchain.
 
 There are several mechanisms for recovering from such situations. If the build
 system is functional, it itself and the rest of the toolchain can always be
-update by first disabling the auto-synchronization hooks (which invoke `bdep`
-and `bpkg`). For example, the following commands should get the toolchain back
+update by disabling the auto-synchronization hooks (which invoke `bdep` and
+`bpkg`). For example, the following commands should get the toolchain back
 into the fully-functional and synchronized state:
 
 ```
@@ -205,8 +205,8 @@ $             b build2/b/ bpkg/bpkg/ bdep/bdep/
 ```
 
 If the build system itself is not functional, it can always be rebuilt using
-the bootstrapped build system (`b-boot`; built by this `bootstrap`
-script). For example:
+the bootstrapped build system (`b-boot`; built by this `bootstrap` script).
+For example:
 
 ```
 $ BDEP_SYNC=0 b-boot build2/b/
