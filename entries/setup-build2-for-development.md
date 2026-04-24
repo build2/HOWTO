@@ -35,33 +35,17 @@ preliminary steps:
 
    If you don't need the development setup of CLI, you can build the compiler
    from a [package][cli] and install it into `/usr/local` or similar. See
-   [Package Consumption][guide-consume-pkg] for details (note that you only
-   need the compiler but it must be the version from the
-   [stage.build2.org](https://stage.build2.org) repository).
+   [Package Consumption][guide-consume-pkg] for details (note that CLI must be
+   the same version as in the [stage.build2.org](https://stage.build2.org)
+   repository).
 
    Alternatively, you can clone the CLI repository, create a development
    setup, and then symlink it in `/usr/local/bin/` (or make alternative
-   arrangements, such as adding it to `PATH`). For example:
+   arrangements, such as adding it to `PATH`). Refer to its `README.md` file
+   for details on the development setup.
 
    NOTE: clone using the `git.codesynthesis.com:/var/scm/...` SSH URL if you
    have the read-write access.
-
-   ```
-   $ "$SHELL"
-   $ export PATH="/tmp/build2-install/bin:$PATH"
-
-   $ mkdir -p ~/work/cli
-   $ cd ~/work/cli
-   $ git clone --recursive https://git.codesynthesis.com/cli/cli.git
-   $ cd cli
-   # see README.md for further instructions
-   $ b
-   $ sudo ln -s "$(pwd)/cli/cli/cli" /usr/local/bin/cli
-   $ which cli
-   $ cli --version
-
-   $ exit # Restore PATH.
-   ```
 
 3. Install the [ODB][odb] compiler using the staged toolchain.
 
@@ -75,33 +59,13 @@ preliminary steps:
    from a [package][odb] and install it into `/usr/local` or similar. See
    [Package Consumption][guide-consume-pkg] and [Installing ODB with
    `build2`][odb-install-build2] for details (note that you only need the
-   compiler but it must be the version from the
+   compiler but it must the same version as in the
    [stage.build2.org](https://stage.build2.org) repository).
 
    Alternatively, you can clone the ODB repository, create a development
    setup, and then symlink it in `/usr/local/bin/` (or make alternative
-   arrangements, such as adding it to `PATH`). For example:
-
-   NOTE: clone using the `git.codesynthesis.com:/var/scm/...` SSH URL if you
-   have the read-write access.
-
-   ```
-   $ "$SHELL"
-   $ export PATH="/tmp/build2-install/bin:$PATH"
-
-   $ mkdir -p ~/work/odb
-   $ cd ~/work/odb
-   $ git clone --recursive https://git.codesynthesis.com/odb/odb.git
-   $ cd odb
-   # see README.md for further instructions
-   $ b odb/
-   $ sudo ln -s "$(pwd)/odb/odb/odb"    /usr/local/bin/odb
-   $ sudo ln -s "$(pwd)/odb/odb/odb.so" /usr/local/bin/odb.so
-   $ which odb
-   $ odb --version
-
-   $ exit # Restore PATH.
-   ```
+   arrangements, such as adding it to `PATH`). Refer to its `README.md` file
+   for details on the development setup.
 
 Now you are ready to run the `bootstrap` script. Typically, you would create a
 subdirectory in your home directory for `build2` development, for example,
