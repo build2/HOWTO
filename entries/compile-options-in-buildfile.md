@@ -14,7 +14,7 @@ could:
 
 1. Prevent the user from controlling the overall characteristics of the
    build, such as debug information, optimization, target architecture,
-   diagnostics, reproducible build, etc.
+   diagnostics (warnings, etc), reproducible build, and so on.
 
 2. Require changes to compilation/linking of other projects that depend
    on this project.
@@ -26,11 +26,19 @@ could:
 In other words, the options that you may specify in a `buildfile` should only
 have local effect. Here are some common categories of such options:
 
-1. Enable/disable warnings (`-Wno-XXX`, `/wdXXX`, `-D_{CRT,SCL}_SECURE_NO_WARNINGS`).
+1. Disable warnings (`-Wno-XXX`, `/wdXXX`, `-D_{CRT,SCL}_SECURE_NO_WARNINGS`).
 
-   Note that you should only enable specific warnings rather than
-   warning classes (`-Wall`, `-Wextra`) since the set of warnings they
-   enable may change in the future.
+   Note that normally you should not enable warnings since that prevents
+   the user from controlling the diagnostics, for example, when your
+   project is used as a dependency.
+
+   You should only enable a warning if you want to effectively treat it
+   as an error. For example, you may want to specify `-Wformat`
+   (and perhaps `-Werror=format`) if you believe your code should not
+   compile if there are any such warnings.
+
+   Note that you should never enabled warning classes (`-Wall`, `-Wextra`,
+   `/W3`) since the set of warnings they enable may change in the future.
 
 2. Enable/disable language features that only affect individual translation
    units, for example:
@@ -55,6 +63,8 @@ Note: if you need to link the `pthread` library, use `-pthread`, not
 And here are some common examples of options that should normally not be
 specified in a `buildfile` (with references to the above rules that they
 violate).
+
+* Enable warning classes (`-Wall`, `/W3`; see above for details) [#1]
 
 * Turn warnings into errors (`-Werror`, `/WX`) [#1]
 
@@ -86,6 +96,6 @@ consumers of your library other than those that affect your library itself.
 In particular, you should not try to disable any warnings (for example, via
 `-D_{CRT,SCL}_SECURE_NO_WARNINGS`) or affect any standard library features
 (for example, via `-D_GNU_SOURCE`, `-D_FILE_OFFSET_BITS`, etc). Note that
-this is the reason why there is no `*.export.coptions`.
+this is the reason why there are no `*.export.coptions`.
 
 [link-pthread]: link-pthread.md
