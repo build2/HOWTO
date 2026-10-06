@@ -92,15 +92,18 @@ if ($c.target.class == 'linux')
 
 # Probes.
 #
-probes = have-strlcpy have-strlcat
+probes =
 
-for p: $probes
+for p: have-strlcpy have-strlcat
+{
   probes/buildfile{$p}: probes/c{$p}
+  probes += probes/buildfile{$p}
+}
 
-update probes/buildfile{$probes}
-source $path(probes/buildfile{$probes})
+update $probes
+source $path($probes)
 
-./: probes/buildfile{$probes} # Make sure gets cleaned.
+./: $probes # Make sure gets cleaned.
 
 info have_strlcpy: $have_strlcpy
 info have_strlcat: $have_strlcat
@@ -261,17 +264,19 @@ Then we just list this target as a prerequisite of all the `strl*()` probes
 we have. Putting it all together:
 
 ```
+probes =
+
 probes/buildfile{have-string-h}:
-probes = have-string-h
+probes += probes/buildfile{have-string-h}
 
 for p: have-strlcpy have-strlcat
 {
   probes/buildfile{$p}: probes/c{$p} probes/buildfile{have-string-h}
-  probes += $p
+  probes += probes/buildfile{$p}
 }
 
-update probes/buildfile{$probes}
-source $path(probes/buildfile{$probes})
+update $probes
+source $path($probes)
 ```
 
 [bazaar]: https://queue.acm.org/doi/10.1145/2346916.2349257
