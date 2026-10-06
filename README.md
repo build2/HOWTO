@@ -20,6 +20,8 @@
 
 [How do I handle tests that have extra dependencies?](entries/handle-tests-with-extra-dependencies.md)
 
+[How do I implement `autoconf`-style configuration probing?](entries/implement-configuration-probing.md)
+
 [How do I keep the build graph configuration-independent?](entries/keep-build-graph-config-independent.md)
 
 [How do I link the `pthread` library?](entries/link-pthread.md)
