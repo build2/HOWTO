@@ -32,7 +32,7 @@ probing:
 
 2. It is brittle: We decide that a feature is absent based on the failure to
    compile/link a test program. But a lot of other things can lead to a
-   failure to compiler or link: mistakes in the test, misconfigured build,
+   failure to compile or link: mistakes in the test, misconfigured build,
    missing feature test macros such as `_GNU_SOURCE`, etc. A recent example
    that caused widespread false negatives were sloppily written probes that
    stopped compiling because both GCC and Clang stopped accepting certain
@@ -44,7 +44,7 @@ probing:
 
 4. Results are not change-tracked: Existing tools (`autoconf`, CMake) do not
    re-run the relevant probes when their inputs change. For example,
-   `strl*()` were added in glibc 2.38. If your upgraded from 2.37, you
+   `strl*()` were added in glibc 2.38. If you upgraded from 2.37, you
    would want all the already configured projects on your machine to
    detect the change and start using the new functions.
 
@@ -282,3 +282,4 @@ source $path($probes)
 [bazaar]: https://queue.acm.org/doi/10.1145/2346916.2349257
 [libbuild2-autoconf]: https://github.com/build2/libbuild2-autoconf/
 [udl]: https://build2.org/build2/doc/build2-build-system-manual.xhtml#directives-update
+[autoprobe]: https://github.com/build2/autoprobe
